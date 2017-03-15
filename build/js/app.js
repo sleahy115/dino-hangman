@@ -4,21 +4,26 @@ var Game = require('./../js/hangman.js').GameModule;
 $(document).ready(function() {
   $('#new-game').click(function(event) {
    event.preventDefault();
-   var new_game = new Game();
-  });
-  $('#letter-input').submit(function(event) {
-   event.preventDefault();
-    var letter = $("#letter").val();
-    var word = 'yes';
-    Game.hangman(letter, word);
-    score = new_game.score;
-    console.log(result);
-    $("#score").text(score);
+   var new_game = new Game(0, "");
+   var word = "yes";
+   new_game.wordLength(word)
+   $("#word").text(new_game.correct_letters);
+
+    $('#letter-input').submit(function(event) {
+     event.preventDefault();
+      var letter = $("#letter").val();
+      var word = 'yes';
+      new_game.hangman(letter, word);
+      $("#score").text(new_game.score);
+      $("#word").text(new_game.correct_letters);
+
+    });
+
   });
 });
 
 },{"./../js/hangman.js":2}],2:[function(require,module,exports){
-function Game(score = 0, correct_letters = []) {
+function Game(score, correct_letters) {
   this.score = score;
   this.correct_letters = correct_letters;
 }
@@ -26,11 +31,23 @@ function Game(score = 0, correct_letters = []) {
 Game.prototype.hangman = function(letter, word) {
   var split_word = word.split("");
   if (split_word.includes(letter) === true) {
-    this.correct_letters.push(letter);
+      var index = word.indexOf(letter);
+      var wordArray = this.correct_letters;
+      this.correct_letters = wordArray.substr(0, index) + letter + wordArray.substr(index + 1);
   } else {
     this.score = score++;
   }
 };
+
+Game.prototype.wordLength = function (word) {
+  var length = word.length;
+  var wordArray = "";
+  for(var i = 1; i<=length; i++){
+    wordArray += "_ ";
+  }
+  this.correct_letters += wordArray;
+};
+
 
 exports.GameModule = Game;
 
