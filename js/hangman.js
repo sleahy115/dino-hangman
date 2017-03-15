@@ -1,22 +1,15 @@
+function Game(score = 0, correct_letters = []) {
+  this.score = score;
+  this.correct_letters = correct_letters;
+}
 
-var hangman = function(letter, word) {
+Game.prototype.hangman = function(letter, word) {
   var split_word = word.split("");
-  return split_word.includes(letter)
+  if (split_word.includes(letter) === true) {
+    this.correct_letters.push(letter);
+  } else {
+    this.score = score++;
+  }
 };
-//   var score = 0;
-//   var result = [];
-//   split_word.forEach(function(element) {
-//     if (element === letter) {
-//       result.push(letter);
-//     }
-//   });
-//   return result;
-//   else {
-//     if (element !== letter)
-//     score++;
-//     alert(score);
-//     console.log(score);
-//   }
-// };
 
-exports.hangmanModule = hangman;
+exports.GameModule = Game;
