@@ -2,7 +2,7 @@ var gulp = require("gulp");
 var source = require("vinyl-source-stream");
 var browserify = require("browserify");
 var concat = require("gulp-concat");
-// var uglify = require("gulp-uglify");
+var uglify = require("gulp-uglify");
 // var utilities = require("gulp-util");
 var jshint = require("gulp-jshint");
 // var buildProduction = utilities.env.production;
@@ -24,4 +24,10 @@ gulp.task('jshint', function(){
   return gulp.src(['js/*.js'])
   .pipe(jshint())
   .pipe(jshint.reporter('default'));
+});
+
+gulp.task("minifyScripts", ["jsBrowserify"], function(){
+  return gulp.src("./build/js/app.js")
+    .pipe(uglify())
+    .pipe(gulp.dest("./build/js"));
 });
