@@ -21,7 +21,6 @@ $(document).ready(function() {
           $("#word").text(new_game.correct_letters);
           $("#win-lose").text(win_or_lose);
 
-
       });
     });
 
