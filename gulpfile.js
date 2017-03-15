@@ -5,6 +5,7 @@ var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 var utilities = require("gulp-util");
 var jshint = require("gulp-jshint");
+var del = require('del');
 var buildProduction = utilities.env.production;
 
 gulp.task('concatInterface', function() {
@@ -32,10 +33,14 @@ gulp.task("minifyScripts", ["jsBrowserify"], function(){
     .pipe(gulp.dest("./build/js"));
 });
 
-gulp.task("build", function(){
+gulp.task("build", ['clean'], function(){
   if (buildProduction) {
     gulp.start('minifyScripts');
   } else {
     gulp.start('jsBrowserify');
   }
+});
+
+gulp.task("clean", function(){
+  return del(['build', 'tmp']);
 });
