@@ -26,7 +26,7 @@ Game.prototype.winLose = function (word) {
   if(this.correct_letters.join('') == word){
     return "you win";
   }else if (this.score == length && this.correct_letters != word.split('')){
-    return "you lose";
+    return "you lose, The word was: " + word.toString();
   }
 };
 
