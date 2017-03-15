@@ -3,7 +3,7 @@ var source = require("vinyl-source-stream");
 var browserify = require("browserify");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
-// var utilities = require("gulp-util");
+var utilities = require("gulp-util");
 var jshint = require("gulp-jshint");
 // var buildProduction = utilities.env.production;
 
@@ -30,4 +30,12 @@ gulp.task("minifyScripts", ["jsBrowserify"], function(){
   return gulp.src("./build/js/app.js")
     .pipe(uglify())
     .pipe(gulp.dest("./build/js"));
+});
+
+gulp.task("build", function(){
+  if (buildProduction) {
+    gulp.start('minifyScripts');
+  } else {
+    gulp.start('jsBrowserify');
+  }
 });
