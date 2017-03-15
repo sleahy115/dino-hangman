@@ -4,9 +4,9 @@ var Game = require('./../js/hangman.js').GameModule;
 $(document).ready(function() {
   $('#new-game').click(function(event) {
    event.preventDefault();
-   var new_game = new Game(0, "");
+   var new_game = new Game(0, []);
    var word = "yes";
-   new_game.wordLength(word)
+   new_game.wordLength(word);
    $("#word").text(new_game.correct_letters);
 
     $('#letter-input').submit(function(event) {
@@ -14,8 +14,11 @@ $(document).ready(function() {
       var letter = $("#letter").val();
       var word = 'yes';
       new_game.hangman(letter, word);
+      var win_or_lose = new_game.winLose(word);
       $("#score").text(new_game.score);
       $("#word").text(new_game.correct_letters);
+      $("#win-lose").text(win_or_lose);
+      console.log(win_or_lose);
 
     });
 
@@ -28,26 +31,32 @@ function Game(score, correct_letters) {
   this.correct_letters = correct_letters;
 }
 
+Game.prototype.wordLength = function (word) {
+  var length = word.length;
+  for(var i = 1; i<=length; i++){
+    this.correct_letters.push("_ ");
+  }
+};
+
 Game.prototype.hangman = function(letter, word) {
   var split_word = word.split("");
   if (split_word.includes(letter) === true) {
       var index = word.indexOf(letter);
       var wordArray = this.correct_letters;
-      this.correct_letters = wordArray.substr(0, index) + letter + wordArray.substr(index + 1);
+      this.correct_letters.splice(index, 1, letter);
   } else {
-    this.score = score++;
+    this.score++;
   }
 };
 
-Game.prototype.wordLength = function (word) {
+Game.prototype.winLose = function (word) {
   var length = word.length;
-  var wordArray = "";
-  for(var i = 1; i<=length; i++){
-    wordArray += "_ ";
+  if(this.correct_letters.join('') == word){
+    return "you win";
+  }else if (this.score == length && this.correct_letters != word.split('')){
+    return "you lose";
   }
-  this.correct_letters += wordArray;
 };
-
 
 exports.GameModule = Game;
 

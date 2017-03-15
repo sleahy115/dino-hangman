@@ -3,25 +3,31 @@ function Game(score, correct_letters) {
   this.correct_letters = correct_letters;
 }
 
+Game.prototype.wordLength = function (word) {
+  var length = word.length;
+  for(var i = 1; i<=length; i++){
+    this.correct_letters.push("_ ");
+  }
+};
+
 Game.prototype.hangman = function(letter, word) {
   var split_word = word.split("");
   if (split_word.includes(letter) === true) {
       var index = word.indexOf(letter);
       var wordArray = this.correct_letters;
-      this.correct_letters = wordArray.substr(0, index) + letter + wordArray.substr(index + 1);
+      this.correct_letters.splice(index, 1, letter);
   } else {
-    this.score = score++;
+    this.score++;
   }
 };
 
-Game.prototype.wordLength = function (word) {
+Game.prototype.winLose = function (word) {
   var length = word.length;
-  var wordArray = "";
-  for(var i = 1; i<=length; i++){
-    wordArray += "_ ";
+  if(this.correct_letters.join('') == word){
+    return "you win";
+  }else if (this.score == length && this.correct_letters != word.split('')){
+    return "you lose";
   }
-  this.correct_letters += wordArray;
 };
-
 
 exports.GameModule = Game;
