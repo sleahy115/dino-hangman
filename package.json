@@ -1,7 +1,6 @@
 {
   "name": "hangman",
   "version": "1.0.0",
-  "description": "",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,12 +10,26 @@
   "devDependencies": {
     "bower-files": "^3.14.1",
     "browser-sync": "^2.18.8",
+    "browserify": "^14.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.0.4",
+    "gulp-uglify": "^2.1.0",
     "gulp-util": "^3.0.8",
     "jshint": "^2.9.4",
     "vinyl-source-stream": "^1.1.0"
-  }
+  },
+  "dependencies": {
+    "browser-sync": "^2.18.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sleahy115/dino-hangman.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sleahy115/dino-hangman/issues"
+  },
+  "homepage": "https://github.com/sleahy115/dino-hangman#readme",
+  "description": ""
 }
