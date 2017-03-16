@@ -14,9 +14,11 @@ Game.prototype.wordLength = function (word) {
 Game.prototype.hangman = function(letter, word) {
   var split_word = word.split("");
   if (split_word.includes(letter) === true) {
-      var index = word.indexOf(letter);
-      var wordArray = this.correct_letters;
-      this.correct_letters.splice(index, 1, letter);
+    for (var i = 0; i <= word.length; i++) {
+      if (split_word[i] === letter){
+      this.correct_letters.splice(i, 1, letter);
+      }
+    }
   } else {
     this.score++;
   }
@@ -42,7 +44,7 @@ $(document).ready(function() {
    var new_game = new Game(0, []);
 
     $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1', function(response){
-      var word = (JSON.stringify(response));
+      var word = (response[0][0]);
       console.log(word);
       new_game.wordLength(word);
       $('#letter-input').show();

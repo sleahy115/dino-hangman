@@ -6,7 +6,7 @@ $(document).ready(function() {
    var new_game = new Game(0, []);
 
     $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1', function(response){
-      var word = (JSON.stringify(response));
+      var word = (response[0][0]);
       console.log(word);
       new_game.wordLength(word);
       $('#letter-input').show();
