@@ -12,7 +12,7 @@ Game.prototype.wordLength = function (word) {
 };
 
 Game.prototype.hangman = function(letter, word) {
-  var split_word = word.split("");
+  var split_word = word.toLowerCase().split("");
   if (split_word.includes(letter) === true) {
     for (var i = 0; i <= word.length; i++) {
       if (split_word[i] === letter){
