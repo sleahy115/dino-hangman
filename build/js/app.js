@@ -13,7 +13,9 @@ Game.prototype.getWord = function(new_game) {
     new_game.wordLength(new_game);
     $('#letter-input').show();
     $("#word").text(new_game.correct_letters);
- });
+ }).fail(function(error){
+    $("#word").text("Sorry there was an error. Apparently dinosaurs are already extinct. Try refreshing the page");
+ })
 };
 
 Game.prototype.wordLength = function (new_game) {
