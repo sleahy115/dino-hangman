@@ -14,10 +14,16 @@ $(document).ready(function() {
       event.preventDefault();
       var letter = $("#letter").val();
       new_game.hangman(letter);
+      $("#output-image").empty();
+      if(new_game.score <= 3){
+        $("#output-image").prepend('<img src="img/1.jpg" />');
+      } else if (new_game.score >= 4){
+        $("#output-image").prepend('<img src="img/3.jpg" />');
       var win_or_lose = new_game.winLose();
       $("#score").text(new_game.score);
       $("#word").text(new_game.correct_letters);
       $("#win-lose").text(win_or_lose);
+      $("#letter").val("");
 
     });
   });

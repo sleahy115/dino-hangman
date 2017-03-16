@@ -35,6 +35,7 @@ Game.prototype.hangman = function(letter) {
     }
   } else {
     this.score++;
+    return this.score;
   }
 };
 
