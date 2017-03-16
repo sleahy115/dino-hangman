@@ -1,14 +1,25 @@
-$gray : #d3d3d3;
+
 $green : #75B975;
 
-body {
-  background: $gray;
-  border: 3px solid black;
-  padding: 40px 80px;
+.output {
+  color: blue;
+  // background-image: url('http://vignette3.wikia.nocookie.net/landbeforetime/images/1/11/BigWaterSmokingMountains2.png/revision/latest?cb=20150217200946');
+  background-repeat: no-repeat;
+  background-size: cover;
   .button {
     font-weight: bold;
     text-align: center;
     background: $green;
     color: white;
   }
+}
+
+.jumbotron {
+  background-image: url('http://vignette3.wikia.nocookie.net/landbeforetime/images/1/11/BigWaterSmokingMountains2.png/revision/latest?cb=20150217200946');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#letter-input{
+  display: none;
 }

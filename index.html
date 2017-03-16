@@ -9,14 +9,16 @@
   </head>
   <body>
     <div class="container">
-      <h1>Dynocide or Dynotopia? You decide...</h1>
+      <div class="jumbotron">
+        <h1>Dynocide or Dynotopia? You decide...</h1>
+      </div>
       <button id="new-game" type="button">New Game</button><br><br>
       <form id="letter-input">
         <label for="letter">Input letter</label>
         <input id="letter" type="text" name="letter" required><br><br>
         <button type="submit" class="btn btn-success">check letter</button>
       </form>
-      <div>
+      <div class="output">
         <p id="score"></p>
         <h2 id ="word"></h2>
         <h2 id ="win-lose"></h2>

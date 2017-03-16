@@ -4,21 +4,21 @@ function Game(score, correct_letters) {
   this.word =  "";
 }
 
-Game.prototype.getWord = function(new_game) {
+Game.prototype.getWord = function(new_game, callback) {
   $.get('http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=1').then(function(response){
     var word = (response[0][0]);
     new_game.word = word;
-    console.log(new_game.word);
     new_game.wordLength(new_game);
-    $('#letter-input').show();
-    $("#word").text(new_game.correct_letters);
- }).fail(function(error){
+    console.log(new_game.word);
+    callback();
+    }).fail(function(error){
     $("#word").text("Sorry there was an error. Apparently dinosaurs are already extinct. Try refreshing the page");
  });
 };
 
 Game.prototype.wordLength = function (new_game) {
   var word = new_game.word;
+  console.log(new_game.word);
   var length = word.length;
   for(var i = 1; i<=length; i++){
     new_game.correct_letters.push("_ ");
